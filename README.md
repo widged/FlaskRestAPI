@@ -26,18 +26,25 @@ Create a new file called app.py by doing `cat > app.py`
 
 Paste into your app.py the code below to achieve a "Hello world display"
 
-`# Importing flask
-from flask import Flask
-app = Flask(__name__)
-print(__name__)`
+`# Importing flask`
 
-`# Using a route decorator
-@app.route('/')
-def hello_world():
-    return "Hello World!"`
+`from flask import Flask`
 
-`# Starting the server for the application on port 5000
-app.run(port=5000)`
+`app = Flask(__name__)`
+
+`print(__name__)`
+
+`# Using a route decorator`
+
+`@app.route('/')`
+
+`def hello_world():`
+
+    return "Hello World!"
+
+`# Starting the server for the application on port 5000`
+
+`app.run(port=5000)`
 
 ## Step 7
 
