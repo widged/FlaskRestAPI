@@ -4,11 +4,11 @@
 
 ## Step 1
 
-Get the latest version of Python https://www.python.org/downloads/
+Get the latest version of Python <https://www.python.org/downloads/>
 
 ## Step 2
 
-Install Pip https://pip.pypa.io/en/stable/installation/
+Install Pip <https://pip.pypa.io/en/stable/installation/>
 
 ## Step 3
 
@@ -16,7 +16,7 @@ Install flask in your terminal with `pip3 install Flask`
 
 ## Step 4
 
-Get Postman to test your endpoints https://www.postman.com/downloads
+Get Postman to test your endpoints <https://www.postman.com/downloads>
 
 ## Step 5
 
@@ -45,4 +45,4 @@ In your terminal, run `python3 app.py` this would start up your server.
 
 ## Step 8
 
-To view the output on the browser, visit http://localhost:5000/
+To view the output on the browser, visit <http://localhost:5000/>
