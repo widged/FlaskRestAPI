@@ -32,8 +32,6 @@ Paste into your app.py the code below to achieve a "Hello world display"
 
 `app = Flask(__name__)`
 
-`print(__name__)`
-
 `# Using a route decorator`
 
 `@app.route('/')`
