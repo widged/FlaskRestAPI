@@ -14,3 +14,7 @@ from flask import Flask, json, jsonify, request
 ## Note
 
 `jsonify` and `request` allow you convert the response to a Json object and allows you to send a request respectively
+
+## Step 2
+
+Add a book with 
