@@ -54,3 +54,9 @@ In your terminal, run `python3 app.py` this would start up your server.
 ## Step 8
 
 To view the output on the browser, visit <http://localhost:5000/>
+
+## Extra: To view http requests
+
+[GET REQUEST](/GET_REQUEST.md)
+
+[POST REQUEST](/POST_REQUEST.md)
