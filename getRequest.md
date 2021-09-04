@@ -1,5 +1,13 @@
-# Importing flask and Json library
-from flask import Flask, json, jsonify
+# FOLLOW THIS INSTRUCTIONS AFTER THE README
+
+## GET ALL BOOKS
+
+### Note: The default method of all endpoint is a get method
+
+```python
+# Importing flask  and Json library
+
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
@@ -10,29 +18,39 @@ books = [
         'name': 'Green Eggs and Ham',
         'price': 7.99,
         'isbn': 987654321,
-    },
+    },  
+
     {
         'name': 'The Cat In The Hat',
         'price': 6.99,
         'isbn': 123456789,
 
     }
-]
-
-# Using a route decorator
-
-
-@app.route('/')
-def hello_world():
-    return "Hello World!"
-
+    ]
 # Route to get all books
-
-
 @app.route('/books')
-def getAllBooks():
-    return jsonify({'books': books})
 
+def getAllBooks():
+
+        return jsonify({'books' : books})
+
+# Starting the server for the application on port 5000
+
+app.run(port=5000)
+
+```
+
+## NOTE: Always restart your server after adding a new route or making an update
+
+## Step1
+
+To view the output on the browser, visit <http://localhost:5000/books>
+
+## GET A SINGLE BOOK
+
+### Use the functino below to get a single book by ISBN
+
+```python
 # Route to get book by isbn
 
 
@@ -50,7 +68,10 @@ def getBookByISBN(isbn):
             }
             # Returning a json of the found book isbn
     return jsonify(return_value)
+```
 
+## Step2
 
-# Starting the server for the application on port 5000
-app.run(port=5000)
+To view the output on the browser, visit <http://localhost:5000/book/{isbn_number}>
+eg
+<http://localhost:5000/book/123456789>
