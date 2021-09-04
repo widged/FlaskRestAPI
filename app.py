@@ -1,5 +1,5 @@
 # Importing flask and Json library
-from flask import Flask, json, jsonify
+from flask import Flask, json, jsonify, request
 
 app = Flask(__name__)
 
@@ -50,6 +50,13 @@ def getBookByISBN(isbn):
             }
             # Returning a json of the found book isbn
     return jsonify(return_value)
+
+
+# Adding a new book
+@app.route('/books', methods=['POST'])
+def add_book():
+    # Getting the request object sent by the user
+    return jsonify(request.get_json())
 
 
 # Starting the server for the application on port 5000
