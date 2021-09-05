@@ -8,7 +8,7 @@ Ensure you have the following import statements
 
 ```python
 # Importing flask and Json library
-from flask import Flask, json, jsonify, request,
+from flask import Flask, json, jsonify, request
 ```
 
 ## Note
@@ -118,4 +118,41 @@ def add_book():
     else:
         return "False"
 
+```
+
+## Step 7
+
+In order to use the Response constructor, import the class by editing your import staement to look like the code below
+
+```python
+from flask import Flask, json, jsonify, request, Response
+```
+
+## Step 8
+
+To send the right status code and response header, update your add_books function to the code below
+
+```python
+
+# Adding a new book
+@app.route('/books', methods=['POST'])
+def add_book():
+    # Getting the request object sent by the user
+    request_data = request.get_json()
+    # Checking if the request is a valid book structure
+    if(validBookObject(request_data)):
+        # Further checking and accepting only the needed keys from the clients request
+        new_book = {
+            'name': request_data['name'],
+            'price': request_data['price'],
+            'isbn': request_data['isbn']
+        }
+        # Inserting the valid book into the list of books
+        books.insert(0, new_book)
+        # Having the response constructor to send the right status code and header location
+        response = Response("", 201, mimetype='application/json')
+        response.headers['Location'] = "/books/" + str(new_book['isbn'])
+        return response
+    else:
+        return "False"
 ```
