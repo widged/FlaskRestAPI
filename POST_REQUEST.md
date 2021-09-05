@@ -2,6 +2,8 @@
 
 ## POST / ADD BOOKS
 
+## Note: Always restart your server after making a change
+
 ## Step 1
 
 Ensure you have the following import statements
@@ -155,4 +157,22 @@ def add_book():
         return response
     else:
         return "False"
+```
+
+## Step 9
+
+To show a proper error message to the client, update the else block in the add_book function to the code below
+
+```python
+    else:
+        # Returning an invalid book error response
+        invalidBookObjectErrorMsg = {
+            "error": "Invalid book passed in the request",
+            "helpString": "Pass data similar to this {'name':'The Cat Runs','price': 3.45,'isbn':234567890}"
+        }
+        # Returning the response to the client
+        response = Response(json.dumps(invalidBookObjectErrorMsg),
+                            status=400, mimetype="application/json")
+        return response
+# NOTE: USE json.dumps() method to convert python dictionaires to json objects
 ```

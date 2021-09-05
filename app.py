@@ -91,7 +91,7 @@ def add_book():
         response = Response(json.dumps(invalidBookObjectErrorMsg),
                             status=400, mimetype="application/json")
         return response
-
+# NOTE: USE json.dumps() method to convert python dictionaires to json objects
 
 # Starting the server for the application on port 5000
 app.run(port=5000)
