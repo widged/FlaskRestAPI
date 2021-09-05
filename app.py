@@ -82,7 +82,15 @@ def add_book():
         response.headers['Location'] = "/books/" + str(new_book['isbn'])
         return response
     else:
-        return "False"
+        # Returning an invalid book error response
+        invalidBookObjectErrorMsg = {
+            "error": "Invalid book passed in the request",
+            "helpString": "Pass data similar to this {'name':'The Cat Runs','price': 3.45,'isbn':234567890}"
+        }
+        # Returning the response to the client
+        response = Response(json.dumps(invalidBookObjectErrorMsg),
+                            status=400, mimetype="application/json")
+        return response
 
 
 # Starting the server for the application on port 5000
