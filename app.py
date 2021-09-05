@@ -52,6 +52,8 @@ def getBookByISBN(isbn):
     return jsonify(return_value)
 
 # Validating request from the client
+
+
 def validBookObject(bookObject):
     if("name" in bookObject and "price" in bookObject and "isbn" in bookObject):
         return True
@@ -59,10 +61,19 @@ def validBookObject(bookObject):
         return False
 
 # Adding a new book
+
+
 @app.route('/books', methods=['POST'])
 def add_book():
     # Getting the request object sent by the user
-    return jsonify(request.get_json())
+    request_data = request.get_json()
+    # Checking if the request is a valid book structure
+    if(validBookObject(request_data)):
+        # Inserting the valid book into the list of books
+        books.insert(0, request_data)
+        return "True"
+    else:
+        return "False"
 
 
 # Starting the server for the application on port 5000
