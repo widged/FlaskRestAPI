@@ -1,5 +1,6 @@
 # Importing flask and Json library
-from flask import Flask, json, jsonify, request
+from flask import Flask, json, jsonify, request, Response
+from werkzeug.wrappers import response
 
 app = Flask(__name__)
 
@@ -77,7 +78,10 @@ def add_book():
         }
         # Inserting the valid book into the list of books
         books.insert(0, new_book)
-        return "True"
+        # Having the response constructor to send the right status code and header location
+        response = Response("",201,mimetype='application/json')
+        response.headers['Location'] = "/books/" + str(new_book['isbn'])
+        return response
     else:
         return "False"
 

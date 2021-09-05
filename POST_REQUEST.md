@@ -8,7 +8,7 @@ Ensure you have the following import statements
 
 ```python
 # Importing flask and Json library
-from flask import Flask, json, jsonify, request
+from flask import Flask, json, jsonify, request,
 ```
 
 ## Note
