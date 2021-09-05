@@ -69,8 +69,14 @@ def add_book():
     request_data = request.get_json()
     # Checking if the request is a valid book structure
     if(validBookObject(request_data)):
+        # Further checking and accepting only the needed keys from the clients request
+        new_book = {
+            'name': request_data['name'],
+            'price': request_data['price'],
+            'isbn': request_data['isbn']
+        }
         # Inserting the valid book into the list of books
-        books.insert(0, request_data)
+        books.insert(0, new_book)
         return "True"
     else:
         return "False"
