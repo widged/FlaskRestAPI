@@ -91,3 +91,31 @@ Test the below route with a post request in postman
 <http://localhost:5000/books>
 
 It would return True if a valid Json request was sent, else, False
+
+## Step 6
+
+To further prevent the client from entering garbage key value in the json request, update the add_book function to
+
+```python
+
+# Adding a new book
+
+@app.route('/books', methods=['POST'])
+def add_book():
+    # Getting the request object sent by the user
+    request_data = request.get_json()
+    # Checking if the request is a valid book structure
+    if(validBookObject(request_data)):
+        # Further checking and accepting only the needed keys from the clients request
+        new_book = {
+            'name': request_data['name'],
+            'price': request_data['price'],
+            'isbn': request_data['isbn']
+        }
+        # Inserting the valid book into the list of books
+        books.insert(0, new_book)
+        return "True"
+    else:
+        return "False"
+
+```
