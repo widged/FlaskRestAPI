@@ -51,6 +51,12 @@ def getBookByISBN(isbn):
             # Returning a json of the found book isbn
     return jsonify(return_value)
 
+# Validating request from the client
+def validBookObject(bookObject):
+    if("name" in bookObject and "price" in bookObject and "isbn" in bookObject):
+        return True
+    else:
+        return False
 
 # Adding a new book
 @app.route('/books', methods=['POST'])
