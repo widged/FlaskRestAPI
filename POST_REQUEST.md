@@ -48,3 +48,46 @@ Use this as a request body
 ```
 
 Then Run the request by clicking the run button
+
+## Validation
+
+Validate the list of books json from the client by creating the function below
+
+```python
+# Validating request from the client
+
+def validBookObject(bookObject):
+    if("name" in bookObject and "price" in bookObject and "isbn" in bookObject):
+        return True
+    else:
+        return False
+
+```
+
+Then update the code from **step 2** into
+
+```python
+
+# Adding a new book
+
+@app.route('/books', methods=['POST'])
+def add_book():
+    # Getting the request object sent by the user
+    request_data = request.get_json()
+    # Checking if the request is a valid book structure
+    if(validBookObject(request_data)):
+        # Inserting the valid book into the list of books
+        books.insert(0, request_data)
+        return "True"
+    else:
+        return "False"
+
+
+```
+
+## Step 5
+
+Test the below route with a post request in postman
+<http://localhost:5000/books>
+
+It would return True if a valid Json request was sent, else, False
