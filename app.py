@@ -44,11 +44,18 @@ def getBookByISBN(isbn):
     for book in books:
         # If the book is found, populate the initial empty dictionary with the found values
         if(book['isbn'] == isbn):
+            # Response if isbn is found
             return_value = {
                 'name': book['name'],
-                'price': book['price'],
+                'price': book['price']
             }
-            # Returning a json of the found book isbn
+        else:
+            # Response if isbn isn't found
+            return_value = {
+                'error': 'ISBN not found'
+            }
+
+            # Returning a json of the book by isbn
     return jsonify(return_value)
 
 # Validating request from the client
@@ -92,6 +99,7 @@ def add_book():
                             status=400, mimetype="application/json")
         return response
 # NOTE: USE json.dumps() method to convert python dictionaires to json objects
+
 
 # Starting the server for the application on port 5000
 app.run(port=5000)

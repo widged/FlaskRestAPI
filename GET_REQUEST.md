@@ -62,11 +62,18 @@ def getBookByISBN(isbn):
     for book in books:
         # If the book is found, populate the initial empty dictionary with the found values
         if(book['isbn'] == isbn):
+            # Response if isbn is found
             return_value = {
                 'name': book['name'],
-                'price': book['price'],
+                'price': book['price']
             }
-            # Returning a json of the found book isbn
+        else:
+            # Response if isbn isn't found
+            return_value = {
+                'error': 'ISBN not found'
+            }
+
+            # Returning a json of the book by isbn
     return jsonify(return_value)
 ```
 
