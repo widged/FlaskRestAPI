@@ -100,6 +100,31 @@ def add_book():
         return response
 # NOTE: USE json.dumps() method to convert python dictionaires to json objects
 
+# function to replace a particular book and all of its data
+@app.route('/books/<int:isbn>', methods=['PUT'])
+def replace_book(isbn):
+    request_data = request.get_json()
+    new_book = {
+            'name': request_data['name'],
+            'price': request_data['price'],
+            'isbn': isbn
+        }
+
+    # Counter to check throgugh each dictionary of books
+    i = 0
+    # Iterating through the list of books
+    for book in books:
+        # Getting the isbn of each iteration
+        currentISBN = book['isbn']
+        # Checking if the isbn entered matches any isbn in the dictionary of books
+        if currentISBN == isbn:
+            # Replacing the books data with the new_book data
+            books[i] = new_book
+        # Increasing the counter to the next ISBN if the entered ISBN doesn't exist in the first ISBN in the dictionary
+        i += 1
+        # Response if the book was found and replaced
+    response = Response("", status=204)
+    return response
 
 # Starting the server for the application on port 5000
 app.run(port=5000)
