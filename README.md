@@ -60,3 +60,5 @@ To view the output on the browser, visit <http://localhost:5000/>
 [GET REQUEST](/GET_REQUEST.md)
 
 [POST REQUEST](/POST_REQUEST.md)
+
+[PUT REQUEST](/PUT_REQUEST.md)
