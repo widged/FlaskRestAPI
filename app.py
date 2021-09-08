@@ -1,4 +1,5 @@
 # Importing flask and Json library
+from os import stat
 from flask import Flask, json, jsonify, request, Response
 
 app = Flask(__name__)
@@ -100,10 +101,26 @@ def add_book():
         return response
 # NOTE: USE json.dumps() method to convert python dictionaires to json objects
 
+# function to validate the request from a client in order to accept just two of the requests
+def valid_put_request_data(request_data):
+    if('name' in request_data and 'price' in request_data):
+        return True
+    else:
+        return False
+
 # function to replace a particular book and all of its data
 @app.route('/books/<int:isbn>', methods=['PUT'])
 def replace_book(isbn):
     request_data = request.get_json()
+    # Handling wrong request error
+    if(not valid_put_request_data(request_data)):
+        invalidBookObjectErrorMsg = {
+            "error": "Invalid book passed in the request",
+            "helpString": "Pass data similar to this {'name':'The Cat Runs','price': 3.45,'isbn':234567890}"
+        }
+        response = Response(json.dumps(invalidBookObjectErrorMsg), status=400, mimetype='application/json')
+        return response
+        
     new_book = {
             'name': request_data['name'],
             'price': request_data['price'],
