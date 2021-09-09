@@ -175,6 +175,21 @@ def updateBook(isbn):
 
     return response
 
+# Deleting a book based on a clients request
+@app.route('/books/<int:isbn>', methods=('DELETE'))
+
+def delete_book(isbn):
+    # Create a counter to check the iteration of each books
+    i = 0
+    for book in books:
+        # Checking if the book exists in the dictionary
+        if(book['isbn'] == isbn):
+            # Deleting the book using the index number
+            books.pop(i)
+        # Increasing the loop for each iteration
+        i += 1
+    return "Done"
+
 # Used to show error messages
 if __name__ == "__main__":
       app.run(debug=True)
