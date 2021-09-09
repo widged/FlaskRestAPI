@@ -68,3 +68,5 @@ To view the output on the browser, visit <http://localhost:5000/>
 [PUT REQUEST](/PUT_REQUEST.md)
 
 [PATCH REQUEST](/PATCH_REQUEST.md)
+
+[DELETE REQUEST](/DELETE_REQUEST.md)
