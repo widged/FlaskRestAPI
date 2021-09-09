@@ -1,4 +1,5 @@
 # Importing flask and Json library
+from logging import error
 from os import stat
 from flask import Flask, json, jsonify, request, Response
 
@@ -176,7 +177,7 @@ def updateBook(isbn):
     return response
 
 # Deleting a book based on a clients request
-@app.route('/books/<int:isbn>', methods=('DELETE'))
+@app.route('/books/<int:isbn>',  methods=['DELETE'])
 
 def delete_book(isbn):
     # Create a counter to check the iteration of each books
@@ -186,9 +187,14 @@ def delete_book(isbn):
         if(book['isbn'] == isbn):
             # Deleting the book using the index number
             books.pop(i)
+            response = Response("", status=204)
+            return response
         # Increasing the loop for each iteration
         i += 1
-    return "Done"
+    # Response if the isbn wasn't found
+    error_message = {'error': 'The book with that ISBN was not found.'}
+    response = Response(json.dumps(error_message), status=404, mimetype='application/json')
+    return response
 
 # Used to show error messages
 if __name__ == "__main__":
