@@ -102,6 +102,8 @@ def add_book():
 # NOTE: USE json.dumps() method to convert python dictionaires to json objects
 
 # function to validate the request from a client in order to accept just two of the requests
+
+
 def valid_put_request_data(request_data):
     if('name' in request_data and 'price' in request_data):
         return True
@@ -109,6 +111,8 @@ def valid_put_request_data(request_data):
         return False
 
 # function to replace a particular book and all of its data
+
+
 @app.route('/books/<int:isbn>', methods=['PUT'])
 def replace_book(isbn):
     request_data = request.get_json()
@@ -118,14 +122,15 @@ def replace_book(isbn):
             "error": "Invalid book passed in the request",
             "helpString": "Pass data similar to this {'name':'The Cat Runs','price': 3.45,'isbn':234567890}"
         }
-        response = Response(json.dumps(invalidBookObjectErrorMsg), status=400, mimetype='application/json')
+        response = Response(json.dumps(invalidBookObjectErrorMsg),
+                            status=400, mimetype='application/json')
         return response
-        
+
     new_book = {
-            'name': request_data['name'],
-            'price': request_data['price'],
-            'isbn': isbn
-        }
+        'name': request_data['name'],
+        'price': request_data['price'],
+        'isbn': isbn
+    }
 
     # Counter to check throgugh each dictionary of books
     i = 0
@@ -142,6 +147,37 @@ def replace_book(isbn):
         # Response if the book was found and replaced
     response = Response("", status=204)
     return response
+
+# Creating a patch function
+@app.route('/books/<int:isbn>', methods=['PATCH'])
+def updateBook(isbn):
+    
+    # Getting the request data
+    request_data = request.get_json()
+
+# Create an empty dictionary to hold the new data
+    updated_book = {}
+    # Checking if the name key is in the json request from the clinet
+    if('name' in request_data):
+        # Setting the key and value of the updated_book dictionary to the new value
+        updated_book['name'] = request_data['name']
+    if('price' in request_data):
+        # Setting the key and value of the updated_book dictionary to the new value
+        updated_book['price'] = request_data['price']
+    # Looping through the books to find if an isbn is matched with the clients request
+    for book in books:
+        if book['isbn'] == isbn:
+            # Updating the book dictionary to reflect the change on the updated_book dictionary
+            book.update(updated_book)
+    response = Response("", status=204)
+    # Setting the location to reflect a link on how to get the newly updated book
+    response.headers['Location'] = "/books/" + str(isbn)
+
+    return response
+
+# Used to show error messages
+if __name__ == "__main__":
+      app.run(debug=True)
 
 # Starting the server for the application on port 5000
 app.run(port=5000)
