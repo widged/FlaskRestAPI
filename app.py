@@ -2,8 +2,7 @@
 from logging import error
 from os import stat
 from flask import Flask, json, jsonify, request, Response
-
-app = Flask(__name__)
+from settings import *
 
 # Creating a list of books
 books = [
