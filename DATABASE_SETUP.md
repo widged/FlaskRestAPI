@@ -14,10 +14,15 @@ from flask import Flask
 app = Flask(__name__)
 
 # Config to point to the location of the database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqllite:///Users\user\Documents\GitHub\FlaskRestAPI/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\user\\Documents\\GitHub\\FlaskRestAPI\\database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
 ```
+
+## Note 0
+
+Read more on flask URI here:
+
+[How to setup flask config](https://flask-sqlalchemy.palletsprojects.com/en/2.x/config/)
 
 ## Step 1
 
@@ -65,3 +70,4 @@ Then exit the python shell by running `exit()`
 ## Note2
 
 Use `ls` or `dir` to check if you have a `database.db` file created
+Use cat `database.db` to see the datatbase structure
