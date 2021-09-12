@@ -50,3 +50,18 @@ You can use `pip freeze` to know the packages you have installed on your machine
 ## Step 4
 
 To create the database, open up python in your terminal by running `python3`
+
+## Step 5
+
+In the python console, import the book model so as to have access to the db object
+
+`from BookModel import db`
+
+## Step 6
+
+Create the database by runnuing `db.create_all()`
+Then exit the python shell by running `exit()`
+
+## Note2
+
+Use `ls` or `dir` to check if you have a `database.db` file created
