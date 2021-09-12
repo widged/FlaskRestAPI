@@ -70,3 +70,5 @@ To view the output on the browser, visit <http://localhost:5000/>
 [PATCH REQUEST](/PATCH_REQUEST.md)
 
 [DELETE REQUEST](/DELETE_REQUEST.md)
+
+[DATABASE CONNECTIVITY](/DATABASE_SETUP.md)
